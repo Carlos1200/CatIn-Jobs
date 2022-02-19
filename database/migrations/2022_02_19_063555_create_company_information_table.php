@@ -15,8 +15,8 @@ class CreateCompanyInformationTable extends Migration
     {
         Schema::create('company_information', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_information');
-            $table->foreign('id_information')->references('id')->on('personal_information');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('company_name',150);
             $table->string('work_area',75);
             $table->string('location',100);
