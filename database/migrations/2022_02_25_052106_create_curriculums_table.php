@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKnowledgeTable extends Migration
+class CreateCurriculumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateKnowledgeTable extends Migration
      */
     public function up()
     {
-        Schema::create('knowledge', function (Blueprint $table) {
+        Schema::create('curriculums', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_information');
-            $table->foreign('id_information')->references('id')->on('personal_information');
-            $table->string('knowledge',200);
+            $table->unsignedBigInteger('id_user');
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->string('cv_tittle',100);
+            $table->text('cv_template');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateKnowledgeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('knowledge');
+        Schema::dropIfExists('curriculums');
     }
 }
