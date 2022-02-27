@@ -45,9 +45,12 @@
                     {{ __('Log in') }}
                 </x-jet-button>
             </div>
-            <div class="flex items-center justify-end mt-4">
+            <div class="flex items-center justify-between mt-4">
                 <a href="{{ url('auth/google') }}">
-                    <img src="{{asset('images/btn_google.png')}}" style="margin-left: 3em;">
+                    <img src="{{asset('images/btn_google.png')}}">
+                </a>
+                <a href="{{ url('auth/github') }}" class="w-48">
+                    <img src="{{asset('images/btn_github.png')}}" >
                 </a>
             </div>
         </form>
