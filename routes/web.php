@@ -18,8 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('auth/{provider}', [ProviderController::class, 'redirectToProvider']);
 Route::get('auth/{provider}/callback', [ProviderController::class, 'handleProviderCallback']);
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
