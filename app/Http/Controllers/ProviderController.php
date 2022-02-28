@@ -43,13 +43,11 @@ class ProviderController extends Controller
                     'provider' => $provider,
                     'password' => encrypt('123456dummy'),
                     'provider_id' => $user->id,
-                    
                 ]);
-              
 
-                 Auth::login($newUser);
+                Auth::login($newUser);
         
-                 return redirect()->intended('dashboard');
+                return redirect()->intended('dashboard');
             }
 
         } catch (Exception $e) {
