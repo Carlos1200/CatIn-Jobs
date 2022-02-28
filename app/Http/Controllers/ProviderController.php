@@ -32,9 +32,9 @@ class ProviderController extends Controller
             $finduser = User::where('provider_id', $user->id)->first();
             if($finduser){
         
-                // Auth::login($finduser);
+                Auth::login($finduser);
     
-                // return redirect()->intended('dashboard');
+                return redirect()->intended('dashboard');
     
             }else{
                 $newUser = User::create([
@@ -42,13 +42,14 @@ class ProviderController extends Controller
                     'email'    => $user->email,
                     'provider' => $provider,
                     'password' => encrypt('123456dummy'),
-                    'provider_id' => $user->id
+                    'provider_id' => $user->id,
+                    
                 ]);
-                var_dump($newUser);
+              
 
-                // Auth::login($newUser);
+                 Auth::login($newUser);
         
-                // return redirect()->intended('dashboard');
+                 return redirect()->intended('dashboard');
             }
 
         } catch (Exception $e) {
