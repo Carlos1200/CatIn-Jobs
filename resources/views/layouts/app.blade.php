@@ -16,12 +16,13 @@
         @livewireStyles
 
         <!-- Scripts -->
+        <script src="https://kit.fontawesome.com/c1e670248c.js" crossorigin="anonymous"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-secondary">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->

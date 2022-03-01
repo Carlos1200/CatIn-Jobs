@@ -23,6 +23,10 @@ Route::get('auth/{provider}', [ProviderController::class, 'redirectToProvider'])
 Route::get('auth/{provider}/callback', [ProviderController::class, 'handleProviderCallback']);
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('home');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {
+    return view('profile');
+})->name('profile');

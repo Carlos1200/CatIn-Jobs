@@ -34,7 +34,7 @@ class ProviderController extends Controller
         
                 Auth::login($finduser);
     
-                return redirect()->intended('dashboard');
+                return redirect()->intended('home');
     
             }else{
                 $newUser = User::create([
@@ -47,7 +47,7 @@ class ProviderController extends Controller
 
                 Auth::login($newUser);
         
-                return redirect()->intended('dashboard');
+                return redirect()->intended('home');
             }
 
         } catch (Exception $e) {
