@@ -2,22 +2,26 @@
     <div class="min-h-screen grid grid-cols-8 ">
         <div class="bg-primary col-span-6 m-7 rounded-xl relative">
             <div class="bg-alt-secondary w-full h-1/2 rounded-xl relative">
-                <i class="fa-solid fa-camera text-3xl text-white cursor-pointer absolute right-4 top-2"></i>
             </div>
-            <img src="{{asset('images/user.png')}}" class="rounded-full absolute top-1/4 left-6" alt="user">
+            <img src="{{$user[0]['profile_photo_url']}}" class="rounded-full absolute top-1/4 left-6 w-52" alt="user">
             <div class="grid grid-cols-2 mt-24">
                 <div class="ml-5">
-                    <h2 class="text-3xl text-white">Carlos Herrera</h2>
-                    <p class="text-xl text-white">San Salvador, El Salvador</p>
+                    <h2 class="text-3xl text-white">{{$user[0]['name']}}</h2>
+                    <p class="text-xl text-white">{{$user[0]['nationality']}}</p>
                 </div>
                 <div class="ml-5">
                     <p class="text-3xl text-white">
                         Sobre Mí... <i class="fa-solid fa-rocket"></i>
                     </p> 
-                    <p class="text-white ">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem corporis incidunt nemo optio animi iure, unde architecto excepturi dicta maiores voluptate aspernatur culpa commodi magni deserunt adipisci impedit? Nisi, tempore.</p>
+                    <p class="text-white ">
+                        @if ($user[0]['about_me'])
+                            {{$user[0]['about_me']}}
+                        @else
+                            No hay información disponible
+                        @endif
+                    </p>
                 </div>
             </div>
-            <i class="fa-solid fa-pen-clip absolute top-1/2 mt-6 right-4 text-2xl text-white cursor-pointer"></i>
         </div>
         <div class="m-5 col-span-2">
             <div class="bg-primary rounded-lg w-full px-3 py-2">

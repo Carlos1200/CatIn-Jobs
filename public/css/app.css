@@ -951,53 +951,20 @@ select {
 .top-0 {
   top: 0px;
 }
-.right-1 {
-  right: 0.25rem;
-}
-.right-2 {
-  right: 0.5rem;
-}
 .right-4 {
   right: 1rem;
 }
 .top-2 {
   top: 0.5rem;
 }
-.top-1\/2 {
-  top: 50%;
-}
-.-top-1\/2 {
-  top: -50%;
-}
-.top-1\/3 {
-  top: 33.333333%;
-}
-.left-3 {
-  left: 0.75rem;
-}
-.-left-3 {
-  left: -0.75rem;
-}
-.left-4 {
-  left: 1rem;
-}
-.left-10 {
-  left: 2.5rem;
-}
-.top-2\/3 {
-  top: 66.666667%;
-}
-.top-1 {
-  top: 0.25rem;
-}
 .top-1\/4 {
   top: 25%;
 }
-.left-8 {
-  left: 2rem;
-}
 .left-6 {
   left: 1.5rem;
+}
+.top-1\/2 {
+  top: 50%;
 }
 .z-0 {
   z-index: 0;
@@ -1011,56 +978,19 @@ select {
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
-.col-span-4 {
-  grid-column: span 4 / span 4;
-}
-.col-span-5 {
-  grid-column: span 5 / span 5;
-}
-.col-start-1 {
-  grid-column-start: 1;
-}
-.col-start-4 {
-  grid-column-start: 4;
-}
-.col-start-3 {
-  grid-column-start: 3;
-}
-.col-start-5 {
-  grid-column-start: 5;
-}
-.col-end-3 {
-  grid-column-end: 3;
-}
-.col-end-6 {
-  grid-column-end: 6;
-}
-.col-end-4 {
-  grid-column-end: 4;
-}
-.col-end-2 {
-  grid-column-end: 2;
-}
-.col-end-7 {
-  grid-column-end: 7;
+.m-7 {
+  margin: 1.75rem;
 }
 .m-5 {
   margin: 1.25rem;
-}
-.m-7 {
-  margin: 1.75rem;
 }
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
-.mx-3 {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-}
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1134,29 +1064,17 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
-.mt-16 {
-  margin-top: 4rem;
+.mt-24 {
+  margin-top: 6rem;
 }
 .ml-5 {
   margin-left: 1.25rem;
 }
-.ml-7 {
-  margin-left: 1.75rem;
+.mb-3 {
+  margin-bottom: 0.75rem;
 }
-.mt-20 {
-  margin-top: 5rem;
-}
-.mt-24 {
-  margin-top: 6rem;
-}
-.mt-7 {
-  margin-top: 1.75rem;
-}
-.mt-0 {
-  margin-top: 0px;
-}
-.-mt-2 {
-  margin-top: -0.5rem;
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 .block {
   display: block;
@@ -1199,12 +1117,6 @@ select {
 }
 .h-20 {
   height: 5rem;
-}
-.h-24 {
-  height: 6rem;
-}
-.h-48 {
-  height: 12rem;
 }
 .h-1\/2 {
   height: 50%;
@@ -1382,15 +1294,6 @@ select {
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
 }
-.self-start {
-  align-self: flex-start;
-}
-.justify-self-start {
-  justify-self: start;
-}
-.justify-self-end {
-  justify-self: end;
-}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1539,6 +1442,12 @@ select {
 .bg-alt-secondary {
   --tw-bg-opacity: 1;
   background-color: rgb(64 191 188 / var(--tw-bg-opacity));
+}
+.bg-primary\/80 {
+  background-color: rgb(14 47 68 / 0.8);
+}
+.bg-primary\/90 {
+  background-color: rgb(14 47 68 / 0.9);
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;

@@ -14,7 +14,7 @@ class AddIdInformationColumn extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_information')->nullable();
+            $table->unsignedBigInteger('id_information');
             $table->foreign('id_information')->references('id')->on('personal_information');
         });
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
 
@@ -27,6 +28,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
     return view('dashboard');
 })->name('home');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/profile', function () {
-    return view('profile');
-})->name('profile');
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class,'show'])->name('profile');
