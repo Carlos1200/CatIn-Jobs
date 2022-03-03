@@ -7,7 +7,7 @@
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
-        <form method="POST" action="{{ route('register') }}" >
+        <form method="POST" action="{{ route('registerProvider') }}" >
             @csrf
             <legend class="text-white mb-5">Personal Information</legend>
             <div>
