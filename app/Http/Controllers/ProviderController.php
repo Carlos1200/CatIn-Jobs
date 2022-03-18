@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
+=======
+use App\Models\Gender;
+>>>>>>> main
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
@@ -34,6 +38,7 @@ class ProviderController extends Controller
         
                 Auth::login($finduser);
     
+<<<<<<< HEAD
                 return redirect()->intended('dashboard');
     
             }else{
@@ -48,6 +53,19 @@ class ProviderController extends Controller
                 Auth::login($newUser);
         
                 return redirect()->intended('dashboard');
+=======
+                return redirect()->intended('home');
+    
+            }else{
+                $userEncode = json_encode([
+                    'name'     => $user->name,
+                    'email'    => $user->email,
+                    'provider_id' => $user->id,
+                    'provider' => $provider,
+                ]);
+                // $genders=Gender::all();
+                return view('auth.registerRole', compact('userEncode'));
+>>>>>>> main
             }
 
         } catch (Exception $e) {
