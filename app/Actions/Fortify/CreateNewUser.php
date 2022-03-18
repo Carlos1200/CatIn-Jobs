@@ -29,7 +29,6 @@ class CreateNewUser implements CreatesNewUsers
             'nationality'=>['required','string','max:75'],
             'phone_contact'=>['required','regex:/[0-9]{8}/'],
             'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
         $info= Personal_Information::create([

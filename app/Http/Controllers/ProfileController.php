@@ -6,6 +6,7 @@ use App\Models\Company_Information;
 use App\Models\Gender;
 use App\Models\Personal_Information;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,11 +23,24 @@ class ProfileController extends Controller
         $role=$_POST['role'];
         $user=$_POST['user'];
         
-        if($role=='user'){
-            $genders=Gender::all();
-            return view('auth.registerProvider',compact('user','role','genders'));
+        Validator::make($_POST, [
+            'role' => ['required', 'string', 'max:100'],
+        ])->validate();
+
+        if(empty($user)){
+            if($role=='user'){
+                $genders=Gender::all();
+                return view('auth.registerProvider',compact('user','role','genders'));
+            }else{
+                return view('auth.register-company',compact('user','role'));
+            }
         }else{
-            return view('auth.register-company',compact('user','role'));
+            if($role=='user'){
+                $genders=Gender::all();
+                return view('auth.register',compact('genders'));
+            }else{
+                return view('auth.register-company',compact('role'));
+            }
         }
     }
     
@@ -35,6 +49,16 @@ class ProfileController extends Controller
         $role=$_POST['role'];
 
         if($role=='user'){
+
+            Validator::make($_POST, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'gender'=>['required','integer'],
+                'birthday'=>['required','date'],
+                'nationality'=>['required','string','max:75'],
+                'phone_contact'=>['required','regex:/[0-9]{8}/'],
+                'password' => $this->passwordRules(),
+            ])->validate();
 
             $info= Personal_Information::create([
                 'genders_id'=>$_POST['gender'],
@@ -53,6 +77,16 @@ class ProfileController extends Controller
             ]);
             Auth::login($newUser);
         }else{
+            Validator::make($_POST, [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'company_name'=>['required','string','max:150'],
+                'work_area'=>['required','string','max:75'],
+                'location'=>['required','string','max:100'],
+                'information'=>['required','string'],
+                'number_employees'=>['required','string','max:120'],
+                'password' => $this->passwordRules(),
+            ])->validate();
             $newUser=User::create([
                 'name' => $user->name,
                 'email' => $user->email,

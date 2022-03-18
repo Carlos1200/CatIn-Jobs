@@ -10,12 +10,16 @@
         <form method="POST" action="{{ route('registerRole') }}" >
             @csrf
             <legend class="text-white mb-5">Account type</legend>
-            <input type="hidden" name="user" value="{{$userEncode}}">
+            <input type="hidden" name="user" value="
+                @if(isset($userEncode))
+                    {{$userEncode}}
+                @endif
+            ">
 
             <div class="mt-4 flex justify-around items-center">
                 <div class="flex flex-col justify-center items-center">
                     <x-jet-label for="user" value="{{ __('User') }}" class="text-white text-2xl"/>
-                    <input type="radio" name="role" id="user" value="user">
+                    <input type="radio" name="role" id="user" value="user" checked>
                 </div>
                 <div class="flex flex-col justify-center items-center">
                     <x-jet-label for="company" value="{{ __('Company') }}" class="text-white text-2xl"/>

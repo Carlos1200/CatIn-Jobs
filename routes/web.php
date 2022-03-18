@@ -23,6 +23,9 @@ Route::get('/', function () {
 Route::get('auth/{provider}', [ProviderController::class, 'redirectToProvider']);
 Route::get('auth/{provider}/callback', [ProviderController::class, 'handleProviderCallback']);
 
+Route::get('registerRole', function(){
+    return view('auth.registerRole');
+})->name('registerRole');
 Route::post('registerRole', [ProfileController::class, 'registerRole'])->name('registerRole');
 Route::post('registerProvider', [ProfileController::class, 'providerRegister'])->name('registerProvider');
 
