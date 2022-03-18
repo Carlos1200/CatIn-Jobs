@@ -20,7 +20,7 @@ class CreatePersonalInformationTable extends Migration
             $table->date('birthday');
             $table->string('nationality',75);
             $table->string('phone_contact',15);
-            $table->text('about_me');
+            $table->text('about_me')->nullable();
             $table->timestamps();
         });
     }
