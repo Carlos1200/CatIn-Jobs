@@ -17,8 +17,7 @@ class CreateKnowledgeTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_information');
             $table->foreign('id_information')->references('id')->on('personal_information');
-            $table->string('type',100);
-            $table->string('description',200);
+            $table->string('knowledge',200);
             $table->timestamps();
         });
     }

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+
+Route::get('auth/{provider}', [ProviderController::class, 'redirectToProvider']);
+Route::get('auth/{provider}/callback', [ProviderController::class, 'handleProviderCallback']);
+
+Route::get('registerRole', function(){
+    return view('auth.registerRole');
+})->name('registerRole');
+Route::post('registerRole', [ProfileController::class, 'registerRole'])->name('registerRole');
+Route::post('registerProvider', [ProfileController::class, 'providerRegister'])->name('registerProvider');
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
     return view('dashboard');
-})->name('dashboard');
+})->name('home');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class,'show'])->name('profile');
