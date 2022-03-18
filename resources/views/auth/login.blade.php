@@ -49,7 +49,7 @@
                 <a href="{{ url('auth/google') }}">
                     <img src="{{asset('images/btn_google.png')}}">
                 </a>
-                <a href="{{ url('auth/github') }}" class="w-48">
+                <a href="{{ url('auth/github') }}" class="w-52">
                     <img src="{{asset('images/btn_github.png')}}" >
                 </a>
             </div>
