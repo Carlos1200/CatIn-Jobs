@@ -15,7 +15,12 @@ class ProfileController extends Controller
     public function show(){
 
         $user_id = Auth::user()->id;
-        $user= User::select('users.name','personal_information.nationality','personal_information.about_me')->join('personal_information','personal_information.id','=','users.id_information')->where('users.id',$user_id)->get();
+        $user_role= Auth::user()->rol;
+        if($user_role=='company'){
+            $user=User::select('company_name','work_area','location','information','number_employees')->join('company_information','company_information.user_id','=','users.id')->where('users.id',$user_id)->get();
+        }else{
+            $user= User::select('users.name','personal_information.nationality','personal_information.about_me')->join('personal_information','personal_information.id','=','users.id_information')->where('users.id',$user_id)->get();
+        }
         return view('profile',compact('user'));
     }
 
