@@ -11,6 +11,7 @@ use App\Models\Laboral_Experience;
 use App\Models\Personal_Information;
 use App\Models\Reference;
 use App\Models\Soft_Skill;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -57,7 +58,6 @@ class ProfileController extends Controller
     }
     
     public function providerRegister(){
-        
         $role=$_POST['role'];
 
         if($role=='user'){
