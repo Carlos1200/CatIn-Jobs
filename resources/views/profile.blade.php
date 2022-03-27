@@ -2,6 +2,11 @@
     <div class="min-h-screen grid grid-cols-8 ">
         <div class="bg-primary col-span-6 m-7 rounded-xl relative">
             <div class="bg-alt-secondary w-full h-1/2 rounded-xl relative">
+                <div class="flex justify-end px-4 pt-5">
+                    <a href="{{route('profile.edit')}}">
+                        <i class="fa-solid fa-pen text-white text-3xl cursor-pointer"></i>
+                    </a>
+                </div>
             </div>
             <img src="{{asset('images/user.png')}}" class="rounded-full absolute top-1/4 left-6 w-52" alt="user">
             <div class="grid grid-cols-2 mt-24">
