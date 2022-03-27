@@ -10,7 +10,6 @@
         <form method="POST" action="{{ route('registerProvider') }}" >
             @csrf
             <legend class="text-white mb-5">Personal Information</legend>
-            <input type="hidden" name="role" value="{{$role}}">
             <div>
                 <x-jet-label for="name" value="{{ __('Name') }}" class="text-white"/>
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="John Snow..." />
