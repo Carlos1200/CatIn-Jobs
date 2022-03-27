@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Knowledges extends Model
 {
+    public $table = 'knowledge';
     use HasFactory;
 }

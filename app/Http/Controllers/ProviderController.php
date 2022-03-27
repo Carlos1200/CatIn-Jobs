@@ -30,12 +30,15 @@ class ProviderController extends Controller
         try {
             $user = Socialite::driver($provider)->user();
 
-            $finduser = User::where('provider_id', $user->id)->first();
+            $finduser = User::where('email', $user->email)->first();
             if($finduser){
         
-                Auth::login($finduser);
-    
-                return redirect()->intended('home');
+                if($finduser->provider_id==$user->id){
+                    Auth::login($finduser);
+                    return redirect()->intended('home');
+                }else{
+                    return redirect()->route('login')->with('error', 'El usuario ya existe con otro proveedor');
+                }
     
             }else{
                 $userEncode = json_encode([
