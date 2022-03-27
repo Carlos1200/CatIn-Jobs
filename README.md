@@ -21,8 +21,5 @@ Este proyecto tiene un propósito enteramente académico, trabajado para la mate
 ## Links de interés
 
 - **Link Trello:** [Link](https://trello.com/b/0ofRCf58/entrega-1)
-- **Link Mock Ups en un documento:** [Link](https://docs.google.com/document/d/1GS7EVeHEXK1HaA_yozrDsA6mtAx5gh-9/edit?usp=sharing&ouid=107684904107417675018&rtpof=true&sd=true)
-- **Link Video Demostrativo de Funcionalidad:** [Link](https://drive.google.com/file/d/1OCc_etTsIA8TRJRz_fdE7WRj34v15L5U/view?usp=sharing)
-- **Link Documento PDF:** [Link](https://docs.google.com/document/d/1OVqtw6rUYAy1D7VA1iC7TNK9x9op055V/edit?usp=sharing&ouid=107684904107417675018&rtpof=true&sd=true)
-- **Link Manual Técnico:** [Link](https://drive.google.com/file/d/1a7lMjOMvhdma8nUQBz1DBDagZiriH9eZ/view?usp=sharing)
-- **Link Manual de Usuario:** [Link](https://drive.google.com/file/d/1insibfo9xYciPV6MBk8MRGlef7pHeifG/view?usp=sharing)
+- **Link Mock Ups en un documento:** [Link](https://www.canva.com/design/DAE41YfvUGM/NftuyLuWWX3CyDw63_Bp0g/view?utm_content=DAE41YfvUGM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+- **Link Documento PDF:** [Link](https://drive.google.com/file/d/1vv8_KxfIP2xGxcms6D-ckCooRkT4jEAJ/view?usp=sharing)
