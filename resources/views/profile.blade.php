@@ -2,22 +2,56 @@
     <div class="min-h-screen grid grid-cols-8 ">
         <div class="bg-primary col-span-6 m-7 rounded-xl relative">
             <div class="bg-alt-secondary w-full h-1/2 rounded-xl relative">
+                <div class="flex justify-end px-4 pt-5">
+                    <a href="{{route('profile.edit')}}">
+                        <i class="fa-solid fa-pen text-white text-3xl cursor-pointer"></i>
+                    </a>
+                </div>
             </div>
-            <img src="{{$user[0]['profile_photo_url']}}" class="rounded-full absolute top-1/4 left-6 w-52" alt="user">
+            <img src="{{asset('images/user.png')}}" class="rounded-full absolute top-1/4 left-6 w-52" alt="user">
             <div class="grid grid-cols-2 mt-24">
                 <div class="ml-5">
-                    <h2 class="text-3xl text-white">{{$user[0]['name']}}</h2>
-                    <p class="text-xl text-white">{{$user[0]['nationality']}}</p>
+                    <h2 class="text-3xl text-white">
+                        @if (Auth::user()->rol=="user")
+                            {{$user[0]['name']}}
+                        @else
+                            {{$user[0]['company_name']}}
+                        @endif
+                    </h2>
+                    <p class="text-xl text-white">
+                        @if (Auth::user()->rol=="user")
+                            {{$user[0]['nationality']}}
+                        @else
+                            {{$user[0]['location']}}
+                        @endif
+                        
+                    </p>
+                    @if (Auth::user()->rol=="company")
+                        <p class="text-xl text-white">
+                            {{$user[0]['work_area']}}
+                        </p>
+                        <p class="text-xl text-white">
+                            {{$user[0]['number_employees']}}
+                        </p>
+                    @endif
                 </div>
                 <div class="ml-5">
                     <p class="text-3xl text-white">
-                        Sobre Mí... <i class="fa-solid fa-rocket"></i>
+                        @if (Auth::user()->rol=="user")
+                            Sobre Mí... <i class="fa-solid fa-rocket"></i>
+                        @else
+                            Información de la empresa <i class="fa-solid fa-rocket"></i>
+                        @endif
                     </p> 
                     <p class="text-white ">
-                        @if ($user[0]['about_me'])
-                            {{$user[0]['about_me']}}
+                        @if (Auth::user()->rol=="user")
+                            @if ($user[0]['about_me'])
+                                {{$user[0]['about_me']}}
+                            @else
+                                No hay información disponible
+                            @endif
                         @else
-                            No hay información disponible
+                            {{$user[0]['information']}}
                         @endif
                     </p>
                 </div>
