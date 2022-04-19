@@ -10,12 +10,12 @@
         <form method="POST" action="{{ route('registerRole') }}" >
             @csrf
             <legend class="text-white mb-5">Account type</legend>
+            @if(isset($userEncode))
             <input type="hidden" name="user" value="
-                @if(isset($userEncode))
                     {{$userEncode}}
-                @endif
-            ">
-
+                    ">
+                    @endif
+                    
             <div class="mt-4 flex justify-around items-center">
                 <div class="flex flex-col justify-center items-center">
                     <x-jet-label for="user" value="{{ __('User') }}" class="text-white text-2xl"/>

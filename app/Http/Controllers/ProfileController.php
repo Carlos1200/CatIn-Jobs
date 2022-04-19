@@ -33,13 +33,12 @@ class ProfileController extends Controller
 
     public function registerRole(){
         $role=$_POST['role'];
-        $user=$_POST['user'];
         
         Validator::make($_POST, [
             'role' => ['required', 'string', 'max:100'],
         ])->validate();
-
-        if(empty($user)){
+        if(!empty(isset($_POST['user']))){
+            $user=$_POST['user'];
             if($role=='user'){
                 $genders=Gender::all();
                 return view('auth.registerProvider',compact('user','role','genders'));
@@ -59,12 +58,9 @@ class ProfileController extends Controller
     public function providerRegister(){
         
         $role=$_POST['role'];
-
         if($role=='user'){
 
             Validator::make($_POST, [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'gender'=>['required','integer'],
                 'birthday'=>['required','date'],
                 'nationality'=>['required','string','max:75'],
@@ -100,8 +96,6 @@ class ProfileController extends Controller
             }
         }else{
             Validator::make($_POST, [
-                'name' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'company_name'=>['required','string','max:150'],
                 'work_area'=>['required','string','max:75'],
                 'location'=>['required','string','max:100'],
@@ -121,7 +115,7 @@ class ProfileController extends Controller
                 ]);
             }else{
                 $newUser=User::create([
-                    'name' => $_POST['name'],
+                    'name' => $_POST['company_name'],
                     'email' => $_POST['email'],
                     'password' => encrypt($_POST['password']),
                     'rol'=>$role,

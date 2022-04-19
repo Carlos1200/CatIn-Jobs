@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Gender;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
@@ -40,8 +39,6 @@ class ProviderController extends Controller
                 }else{
                     return redirect()->route('login')->with('error', 'El usuario ya existe con otro proveedor');
                 }
-                Auth::login($finduser);
-
     
             }else{
                 $userEncode = json_encode([
