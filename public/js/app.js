@@ -5598,23 +5598,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var template = "\n    <div>\n        <strong>Hello World!</strong>\n    </div>\n";
+var template = "\n    <div>\n        <strong>Crea tu Cv</strong>\n    </div>\n";
 function Editor() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_live__WEBPACK_IMPORTED_MODULE_3__.LiveProvider, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_live__WEBPACK_IMPORTED_MODULE_3__.LiveProvider, {
     code: template,
-    className: "max-h-screen",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-      className: "grid md:grid-cols-2 grid-cols-1",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+    className: "w-full",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+      className: "grid md:grid-cols-2 grid-cols-1 h-screen ",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "col-span-1",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_live__WEBPACK_IMPORTED_MODULE_3__.LiveEditor, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_live__WEBPACK_IMPORTED_MODULE_3__.LiveEditor, {
           theme: prism_react_renderer_themes_vsDark__WEBPACK_IMPORTED_MODULE_4__["default"],
-          className: ""
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_live__WEBPACK_IMPORTED_MODULE_3__.LiveError, {})]
+          className: "h-screen"
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_live__WEBPACK_IMPORTED_MODULE_3__.LivePreview, {
-        className: "col-span-1 bg-white "
+        className: "col-span-1 bg-white h-screen"
       })]
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_live__WEBPACK_IMPORTED_MODULE_3__.LiveError, {
+      className: "bg-secondary text-red-600"
+    })]
   });
 }
 
