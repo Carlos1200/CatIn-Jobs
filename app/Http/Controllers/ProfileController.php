@@ -16,6 +16,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use stdClass;
 
 class ProfileController extends Controller
@@ -79,20 +80,29 @@ class ProfileController extends Controller
             ]);
             if(isset($_POST['user'])){
                 $user=json_decode($_POST['user']);
+                //validate if the user already exists
+                $user_exists=User::where('email',$user->email)->first();
+                if(!empty($user_exists)){
+                    return redirect()->back()->with('error','El usuario ya existe');
+                }
                 $newUser=User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'password' => encrypt('123456dummy'),
+                    'password' => Hash::make('123456dummy'),
                     'provider_id' => $user->provider_id,
                     'provider' => $user->provider,
                     'id_information'=>$info->id,
                 ]);
                 Auth::login($newUser);
             }else{
+                $user_exists=User::where('email',$_POST['email'])->first();
+                if(!empty($user_exists)){
+                    return redirect()->back()->with('error','El usuario ya existe');
+                }
                 $user=User::create([
                     'name' => $_POST['name'],
                     'email' => $_POST['email'],
-                    'password' => encrypt($_POST['password']),
+                    'password' => Hash::make($_POST['password']),
                     'id_information'=>$info->id,
                 ]);
                 Auth::login($user);
@@ -108,19 +118,27 @@ class ProfileController extends Controller
             ])->validate();
             if(isset($_POST['user'])){
                 $user=json_decode($_POST['user']);
+                $user_exists=User::where('email',$user->email)->first();
+                if(!empty($user_exists)){
+                    return redirect()->back()->with('error','El usuario ya existe');
+                }
                 $newUser=User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'password' => encrypt('123456dummy'),
+                    'password' => Hash::make('123456dummy'),
                     'provider_id' => $user->provider_id,
                     'provider' => $user->provider,
                     'rol'=>$role,
                 ]);
             }else{
+                $user_exists=User::where('email',$_POST['email'])->first();
+                if(!empty($user_exists)){
+                    return redirect()->back()->with('error','El usuario ya existe');
+                }
                 $newUser=User::create([
                     'name' => $_POST['company_name'],
                     'email' => $_POST['email'],
-                    'password' => encrypt($_POST['password']),
+                    'password' => Hash::make($_POST['password']),
                     'rol'=>$role,
                 ]);
             }
