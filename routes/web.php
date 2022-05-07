@@ -46,4 +46,3 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/cv/api/info',[EditorContr
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile/edit',[ProfileController::class,'edit'])->name('profile.edit');
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/profile/edit',[ProfileController::class,'update'])->name('profile.update');
-

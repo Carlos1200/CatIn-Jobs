@@ -10,20 +10,20 @@ import vsDark from 'prism-react-renderer/themes/vsDark'
 
 const template = `
     <div>
-        <strong>Hello World!</strong>
+        <strong>Crea tu Cv</strong>
     </div>
 `;
 
 export default function Editor() {
     return (
-        <LiveProvider code={template} className="max-h-screen">
-            <div className='grid md:grid-cols-2 grid-cols-1'>
+        <LiveProvider code={template} className="w-full">
+            <div className='grid md:grid-cols-2 grid-cols-1 h-screen '>
                 <div className='col-span-1'>
-                    <LiveEditor theme={vsDark} className="" />
-                    <LiveError />
+                    <LiveEditor theme={vsDark} className="h-screen"  />
                 </div>
-                <LivePreview className='col-span-1 bg-white ' />
+                <LivePreview className='col-span-1 bg-white h-screen' />
             </div>
+            <LiveError className='bg-secondary text-red-600' />
         </LiveProvider>
     );
 }
