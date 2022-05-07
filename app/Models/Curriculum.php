@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Curriculum extends Model
 {
     use HasFactory;
+    //set name of table
+    protected $table = 'curriculums';
+    protected $fillable = ['id_user','cv_tittle','cv_template'];
 }
