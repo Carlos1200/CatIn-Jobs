@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company_Information;
+use App\Models\Curriculum;
 use App\Models\Formation;
 use App\Models\Gender;
 use App\Models\Idioms;
@@ -15,6 +16,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use stdClass;
 
 class ProfileController extends Controller
@@ -25,10 +27,12 @@ class ProfileController extends Controller
         $user_role= Auth::user()->rol;
         if($user_role=='company'){
             $user=User::select('company_name','work_area','location','information','number_employees')->join('company_information','company_information.user_id','=','users.id')->where('users.id',$user_id)->get();
+            return view('profile',compact('user'));
         }else{
             $user= User::select('users.name','personal_information.nationality','personal_information.about_me')->join('personal_information','personal_information.id','=','users.id_information')->where('users.id',$user_id)->get();
+            $curriculums=Curriculum::where('id_user',$user_id)->limit(4)->get();
+            return view('profile',compact('user','curriculums'));
         }
-        return view('profile',compact('user'));
     }
 
     public function registerRole(){
@@ -76,20 +80,29 @@ class ProfileController extends Controller
             ]);
             if(isset($_POST['user'])){
                 $user=json_decode($_POST['user']);
+                //validate if the user already exists
+                $user_exists=User::where('email',$user->email)->first();
+                if(!empty($user_exists)){
+                    return redirect()->back()->with('error','El usuario ya existe');
+                }
                 $newUser=User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'password' => encrypt('123456dummy'),
+                    'password' => Hash::make('123456dummy'),
                     'provider_id' => $user->provider_id,
                     'provider' => $user->provider,
                     'id_information'=>$info->id,
                 ]);
                 Auth::login($newUser);
             }else{
+                $user_exists=User::where('email',$_POST['email'])->first();
+                if(!empty($user_exists)){
+                    return redirect()->back()->with('error','El usuario ya existe');
+                }
                 $user=User::create([
                     'name' => $_POST['name'],
                     'email' => $_POST['email'],
-                    'password' => encrypt($_POST['password']),
+                    'password' => Hash::make($_POST['password']),
                     'id_information'=>$info->id,
                 ]);
                 Auth::login($user);
@@ -105,19 +118,27 @@ class ProfileController extends Controller
             ])->validate();
             if(isset($_POST['user'])){
                 $user=json_decode($_POST['user']);
+                $user_exists=User::where('email',$user->email)->first();
+                if(!empty($user_exists)){
+                    return redirect()->back()->with('error','El usuario ya existe');
+                }
                 $newUser=User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'password' => encrypt('123456dummy'),
+                    'password' => Hash::make('123456dummy'),
                     'provider_id' => $user->provider_id,
                     'provider' => $user->provider,
                     'rol'=>$role,
                 ]);
             }else{
+                $user_exists=User::where('email',$_POST['email'])->first();
+                if(!empty($user_exists)){
+                    return redirect()->back()->with('error','El usuario ya existe');
+                }
                 $newUser=User::create([
                     'name' => $_POST['company_name'],
                     'email' => $_POST['email'],
-                    'password' => encrypt($_POST['password']),
+                    'password' => Hash::make($_POST['password']),
                     'rol'=>$role,
                 ]);
             }
@@ -166,9 +187,20 @@ class ProfileController extends Controller
         return view('profile-edit',compact('info','generos'));
     }
 
-    public function update(){
-        var_dump($_POST);
+    public function update(Request $request){
         $id=Auth::user()->id;
-        $id_info=User::select('id_information')->where('id',$id)->get();
+        $user= User::where('id', $id)->first();
+        $info=Personal_Information::where('id',$user->id_information)->first();
+        
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->save();
+        $info->birthday=$request->birthday;
+        $info->nationality=$request->nationality;
+        $info->phone_contact=$request->phone_contact;
+        $info->genders_id=$request->gender;
+        $info->about_me=$request->about_me;
+        $info->save();
+        return redirect()->route('profile');
     }
 }
