@@ -20,10 +20,12 @@
                         <i class="fa-solid fa-briefcase text-white text-2xl"></i>
                         <p class="text-white">Inicio</p> 
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')" class="flex flex-col justify-center">
+                    @if (Auth::user()->rol=="user")
+                    <x-jet-nav-link href="{{ route('cv.show') }}" :active="request()->routeIs('cv.show')" class="flex flex-col justify-center">
                         <i class="fa-solid fa-file-lines text-white text-2xl"></i>
                         <p class="text-white">CV</p> 
                     </x-jet-nav-link>
+                    @endif
                     <x-jet-nav-link href="{{ route('profile') }}" :active="request()->routeIs('profile')" class="flex flex-col justify-center">
                         <i class="fa-solid fa-user text-white text-2xl"></i>
                         <p class="text-white">Perfil</p> 

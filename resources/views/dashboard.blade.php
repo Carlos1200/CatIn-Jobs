@@ -26,10 +26,10 @@
                     </div>
                 </div>
                 <!-- Boton Publicar Nuevo Empleo -->
-                <div class="flex flex-row items-center border-teal-700 border-2 rounded-lg m-7 p-6">
+                <a href="{{route("jobs.show")}}" class="flex flex-row items-center border-teal-700 border-2 rounded-lg m-7 p-6">
                     <i class="fa-solid fa-pen-to-square mr-3 text-xl"></i>
                     <p class="text-xl font-bold ">Publicar un Nuevo Empleo</p>
-                </div>
+                </a>
             </div>
 
             <!-- Oportunidades de Empleo a tu Alcance -->
