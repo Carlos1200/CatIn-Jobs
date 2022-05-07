@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EditorController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
@@ -35,3 +36,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
 })->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class,'show'])->name('profile');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/cv/show',function(){
+    return view('editor');
+})->name('cv.show');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/cv/api/info',[EditorController::class,'getInfo'])->name('cv.api.info');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/profile/edit',[ProfileController::class,'edit'])->name('profile.edit');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/profile/edit',[ProfileController::class,'update'])->name('profile.update');

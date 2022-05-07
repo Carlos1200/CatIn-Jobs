@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-=======
 use App\Models\Gender;
->>>>>>> main
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
@@ -33,28 +30,15 @@ class ProviderController extends Controller
         try {
             $user = Socialite::driver($provider)->user();
 
-            $finduser = User::where('provider_id', $user->id)->first();
+            $finduser = User::where('email', $user->email)->first();
             if($finduser){
         
-                Auth::login($finduser);
-    
-<<<<<<< HEAD
-                return redirect()->intended('dashboard');
-    
-            }else{
-                $newUser = User::create([
-                    'name'     => $user->name,
-                    'email'    => $user->email,
-                    'provider' => $provider,
-                    'password' => encrypt('123456dummy'),
-                    'provider_id' => $user->id,
-                ]);
-
-                Auth::login($newUser);
-        
-                return redirect()->intended('dashboard');
-=======
-                return redirect()->intended('home');
+                if($finduser->provider_id==$user->id){
+                    Auth::login($finduser);
+                    return redirect()->intended('home');
+                }else{
+                    return redirect()->route('login')->with('error', 'El usuario ya existe con otro proveedor');
+                }
     
             }else{
                 $userEncode = json_encode([
@@ -65,7 +49,6 @@ class ProviderController extends Controller
                 ]);
                 // $genders=Gender::all();
                 return view('auth.registerRole', compact('userEncode'));
->>>>>>> main
             }
 
         } catch (Exception $e) {
