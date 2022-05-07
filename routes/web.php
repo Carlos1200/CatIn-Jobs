@@ -37,12 +37,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class,'show'])->name('profile');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/cv/show',function(){
-    return view('editor');
-})->name('cv.show');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/cv/api/info',[EditorController::class,'getInfo'])->name('cv.api.info');
+Route::middleware(['auth:sanctum', 'verified'])->get('/cv/show',[EditorController::class,'show'])->name('cv.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile/edit',[ProfileController::class,'edit'])->name('profile.edit');
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/profile/edit',[ProfileController::class,'update'])->name('profile.update');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/cv/upload',[EditorController::class,'uploadFile'])->name('cv.upload');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/cv/download',[EditorController::class,'downloadFile'])->name('cv.download');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/cv/delete',[EditorController::class,'deleteFile'])->name('cv.delete');
