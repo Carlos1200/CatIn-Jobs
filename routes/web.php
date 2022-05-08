@@ -32,24 +32,26 @@ Route::post('registerRole', [ProfileController::class, 'registerRole'])->name('r
 Route::post('registerProvider', [ProfileController::class, 'providerRegister'])->name('registerProvider');
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/home',[JobsOffering::class,'getInfo'])->name('home');
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', [JobsOffering::class, 'getInfo'])->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class, 'show'])->name('profile');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/cv/show',[EditorController::class,'show'])->name('cv.show');
+Route::middleware(['auth:sanctum', 'verified'])->get('/cv/show', [EditorController::class, 'show'])->name('cv.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/publish/show', [JobsOffering::class, 'show'])->name('jobs.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/publish/store', [JobsOffering::class, 'store'])->name('jobs.store');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/jobinfo/showDetails', [JobsOffering::class, 'showDetails'])->name('jobs.showDetails');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/cv/api/info', [EditorController::class, 'getInfo'])->name('cv.api.info');
 
-Route::middleware(['auth:sanctum', 'verified'])->post('/profile/edit',[ProfileController::class,'update'])->name('profile.update');
+Route::middleware(['auth:sanctum', 'verified'])->post('/profile/edit', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::middleware(['auth:sanctum', 'verified'])->post('/cv/upload',[EditorController::class,'uploadFile'])->name('cv.upload');
+Route::middleware(['auth:sanctum', 'verified'])->post('/cv/upload', [EditorController::class, 'uploadFile'])->name('cv.upload');
 
-Route::middleware(['auth:sanctum', 'verified'])->post('/cv/download',[EditorController::class,'downloadFile'])->name('cv.download');
+Route::middleware(['auth:sanctum', 'verified'])->post('/cv/download', [EditorController::class, 'downloadFile'])->name('cv.download');
 
-Route::middleware(['auth:sanctum', 'verified'])->post('/cv/delete',[EditorController::class,'deleteFile'])->name('cv.delete');
+Route::middleware(['auth:sanctum', 'verified'])->post('/cv/delete', [EditorController::class, 'deleteFile'])->name('cv.delete');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

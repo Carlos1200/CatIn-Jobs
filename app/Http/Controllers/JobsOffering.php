@@ -14,9 +14,10 @@ class JobsOffering extends Controller
         return view('publish');
     }
 
-    public function store(Request $request){
-        
-        $id=Auth::user()->id;
+    public function store(Request $request)
+    {
+
+        $id = Auth::user()->id;
 
         $request->validate([
             'title' => 'required|max:255',
@@ -34,17 +35,29 @@ class JobsOffering extends Controller
         $job->save();
 
         return redirect()->route('home');
-
     }
 
-    public function getInfo(){
-        $jobs=Hiring_Publication::select('company_information.company_name','company_information.work_area',
-        'company_information.location','hiring_publication.title','hiring_publication.hiring_type',
-        'hiring_publication.created_at','hiring_publication.salary','hiring_publication.id')
-        ->join('users','users.id','=','hiring_publication.id_user')
-        ->join('company_information','user_id','=','users.id')
-        ->get();
+    public function getInfo()
+    {
+        $jobs = Hiring_Publication::select(
+            'company_information.company_name',
+            'company_information.work_area',
+            'company_information.location',
+            'hiring_publication.title',
+            'hiring_publication.hiring_type',
+            'hiring_publication.created_at',
+            'hiring_publication.salary',
+            'hiring_publication.id'
+        )
+            ->join('users', 'users.id', '=', 'hiring_publication.id_user')
+            ->join('company_information', 'user_id', '=', 'users.id')
+            ->get();
 
-        return view('dashboard',compact('jobs'));
+        return view('dashboard', compact('jobs'));
+    }
+
+    public function showDetails()
+    {
+        return view('jobinfo');
     }
 }
