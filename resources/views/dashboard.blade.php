@@ -14,10 +14,7 @@
                     <ul class="flex flex-col text-justify text-md">
                         @foreach ($save_jobs as $save_job)
                             <li class="flex gap-x-2">
-                                <form action="" method="POST" class="grow">
-                                    @csrf
-                                    <input type="hidden" name="job_id" value="{{$save_job->id}}">
-                                    <button type="submit">- {{$save_job->title}}</button>                                    
+                                        <a class="grow" href="{{route('jobs.showDetails',['id'=>$save_job->id])}}">- {{$save_job->title}}</a>                              
                                 </form>
                                 <form action="{{route('profile.save.unsave')}}" method="POST" class="shrink">
                                     @csrf
@@ -62,7 +59,7 @@
                                 </form>
                                 @endif
                                 <div class="mx-4">
-                                    <p class="text-3xl font-bold">{{$job->title}}</p>
+                                    <a href="{{route('jobs.showDetails',['id'=>$job->id])}}" class="text-3xl font-bold">{{$job->title}}</a>
                                     <p>{{$job->company_name}}</p>
                                     <p>{{$job->location}} ({{$job->hiring_type}})</p>
                                 </div>

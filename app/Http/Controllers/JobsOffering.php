@@ -15,9 +15,10 @@ class JobsOffering extends Controller
         return view('publish');
     }
 
-    public function store(Request $request){
-        
-        $id=Auth::user()->id;
+    public function store(Request $request)
+    {
+
+        $id = Auth::user()->id;
 
         $request->validate([
             'title' => 'required|max:255',
@@ -35,7 +36,6 @@ class JobsOffering extends Controller
         $job->save();
 
         return redirect()->route('home');
-
     }
 
     public function getInfo(){
@@ -74,5 +74,16 @@ class JobsOffering extends Controller
         var_dump($job);
         $job->delete();
         return redirect()->back();
+    }
+
+    public function showDetails($id){
+        $job=Hiring_Publication::select('company_information.company_name','company_information.work_area',
+        'company_information.location','hiring_publication.title','hiring_publication.hiring_type','hiring_publication.description',
+        'hiring_publication.salary','hiring_publication.id')
+        ->join('users','users.id','=','hiring_publication.id_user')
+        ->join('company_information','user_id','=','users.id')
+        ->where('hiring_publication.id',$id)
+        ->get()[0];
+        return view('jobinfo',compact('job'));
     }
 }
