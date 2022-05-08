@@ -3,6 +3,7 @@
         <div class="flex flex-row m">
             <div class="text-white px-6">
                 <!-- Caja de Mis Empleados Aplicados -->
+                @if (Auth::user()->rol=="user")
                 <div class="bg-primary rounded-lg m-7 px-6 py-4">
                     <!-- Titulo -->
                     <div class="flex flex-row items-center text-xl mb-4">
@@ -25,11 +26,14 @@
                         <i class="fa-solid fa-sort-down text-3xl text-white"></i>
                     </div>
                 </div>
+                @endif
                 <!-- Boton Publicar Nuevo Empleo -->
+                @if (Auth::user()->rol=="company")
                 <a href="{{route("jobs.show")}}" class="flex flex-row items-center border-teal-700 border-2 rounded-lg m-7 p-6">
                     <i class="fa-solid fa-pen-to-square mr-3 text-xl"></i>
                     <p class="text-xl font-bold ">Publicar un Nuevo Empleo</p>
                 </a>
+                @endif
             </div>
 
             <!-- Oportunidades de Empleo a tu Alcance -->
@@ -37,110 +41,34 @@
                 <div class="text-center text-white text-3xl mx-5">
                     <p>Oportunidades de Empleo</p>
                 </div>
-                <hr class="mx-5">
-                <div class="m-5 flex flex-col text-white text-basic items-center">
-                    <!-- Contenedor de Empleos -->
-                    <div class="flex flex-row mx-5">
-                        <!-- Cuadrado -->
-                        <div class="mx-5">
-                            <i class="fa-solid fa-square"></i>
-                        </div>
-                        <!-- Informacion -->
-                        <div class="mx-5 w-52">
-                            <p>React Developer - Oportunidad de Trabajo Remoto</p>
-                            <p>BairesDev</p>
-                            <p>San Salvador, El Salvador (En remoto)</p>
-                            <div class="flex flex-row">
-                                <i class="fa-solid fa-user-group mx-5 p-2"></i>
-                                <p class="text-base mx-5 p-2">9</p>
-                                <p class="p-2">Cupos</p>
+                @if ($jobs->count()>0)
+                    
+                @foreach ($jobs as $job)
+                    <hr class="mx-5">
+                    <div class="m-5 flex flex-col text-white text-basic items-center">
+                        <!-- Contenedor de Empleos -->
+                        <div class="flex flex-row mx-5">
+                            <!-- Cuadrado -->
+                            <div class="mx-5">
+                                <i class="fa-solid fa-square"></i>
+                            </div>
+                            <!-- Informacion -->
+                            <div class="mx-5 w-52">
+                                <p>{{$job->title}}</p>
+                                <p>{{$job->company_name}}</p>
+                                <p>{{$job->location}} ({{$job->hiring_type}})</p>
+                            </div>
+                            <!-- Icono de Guardado y Fecha -->
+                            <div class="mx-5 w-48 text-right">
+                                <i class="fa-light fa-bookmark text-3xl"></i>
+                                <p class="p-2">Hace 6 dias</p>
                             </div>
                         </div>
-                        <!-- Icono de Guardado y Fecha -->
-                        <div class="mx-5 w-48 text-right">
-                            <i class="fa-light fa-bookmark text-3xl"></i>
-                            <p class="p-2">Hace 6 dias</p>
-                        </div>
                     </div>
-                </div>
-                <hr class="mx-5">
-                <div class="m-5 flex flex-col text-white text-basic items-center">
-                    <!-- Contenedor de Empleos -->
-                    <div class="flex flex-row mx-5">
-                        <!-- Cuadrado -->
-                        <div class="mx-5">
-                            <i class="fa-solid fa-square"></i>
-                        </div>
-                        <!-- Informacion -->
-                        <div class="mx-5 w-52">
-                            <p>Senior React Developer</p>
-                            <p>Troptal</p>
-                            <p>San Salvador, El Salvador (En remoto)</p>
-                            <div class="flex flex-row">
-                                <i class="fa-solid fa-user-group mx-5 p-2"></i>
-                                <p class="text-base mx-5 p-2">15</p>
-                                <p class="p-2">Cupos</p>
-                            </div>
-                        </div>
-                        <!-- Icono de Guardado y Fecha -->
-                        <div class="mx-5 w-48 text-right">
-                            <i class="fa-light fa-bookmark text-3xl"></i>
-                            <p class="p-2">Hace 12 dias</p>
-                        </div>
-                    </div>
-                </div>
-                <hr class="mx-5">
-                <div class="m-5 flex flex-col text-white text-basic items-center">
-                    <!-- Contenedor de Empleos -->
-                    <div class="flex flex-row mx-5">
-                        <!-- Cuadrado -->
-                        <div class="mx-5">
-                            <i class="fa-solid fa-square"></i>
-                        </div>
-                        <!-- Informacion -->
-                        <div class="mx-5 w-52">
-                            <p>Senior Front-End Developer</p>
-                            <p>NoWappsv</p>
-                            <p>Antigua Cuscatlan, La Libertad, El Salvador</p>
-                            <div class="flex flex-row">
-                                <i class="fa-solid fa-user-group mx-5 p-2"></i>
-                                <p class="text-base mx-5 p-2">7</p>
-                                <p class="p-2">Cupos</p>
-                            </div>
-                        </div>
-                        <!-- Icono de Guardado y Fecha -->
-                        <div class="mx-5 w-48 text-right">
-                            <i class="fa-light fa-bookmark text-3xl"></i>
-                            <p class="p-2">Hace 8 horas</p>
-                        </div>
-                    </div>
-                </div>
-                <hr class="mx-5">
-                <div class="m-5 flex flex-col text-white text-basic items-center">
-                    <!-- Contenedor de Empleos -->
-                    <div class="flex flex-row mx-5">
-                        <!-- Cuadrado -->
-                        <div class="mx-5">
-                            <i class="fa-solid fa-square"></i>
-                        </div>
-                        <!-- Informacion -->
-                        <div class="mx-5 w-52">
-                            <p>Desarrollador Web con PHP</p>
-                            <p>Morazan Progresa</p>
-                            <p>Morazan</p>
-                            <div class="flex flex-row">
-                                <i class="fa-solid fa-user-group mx-5 p-2"></i>
-                                <p class="text-base mx-5 p-2">23</p>
-                                <p class="p-2">Cupos</p>
-                            </div>
-                        </div>
-                        <!-- Icono de Guardado y Fecha -->
-                        <div class="mx-5 w-48 text-right">
-                            <i class="fa-light fa-bookmark text-3xl"></i>
-                            <p class="p-2">Hace 10 dias</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+                @else
+                    <h2 class="text-center text-white text-4xl mt-5">No tenemos ofertas de empleo que ofrecerte</h2>
+                @endif
             </div>
         </div>
 
