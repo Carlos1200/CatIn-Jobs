@@ -11,6 +11,7 @@ use App\Models\Knowledges;
 use App\Models\Laboral_Experience;
 use App\Models\Personal_Information;
 use App\Models\Reference;
+use App\Models\SaveJob;
 use App\Models\Soft_Skill;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -203,4 +204,6 @@ class ProfileController extends Controller
         $info->save();
         return redirect()->route('profile');
     }
+
+    
 }

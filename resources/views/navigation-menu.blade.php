@@ -9,11 +9,6 @@
                         <img src="{{ asset('images/logo.png') }}" alt="Logo" class="w-12">
                     </a>
                 </div>
-                <!-- Search Input -->
-                <div class="flex justify-center items-center relative">
-                    <input type="text" class="rounded appearance-none" placeholder="Buscar">
-                    <i class="fa-solid fa-magnifying-glass absolute right-0 mr-2 text-2xl"></i>
-                </div>
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')" class="flex flex-col justify-center">

@@ -58,6 +58,7 @@
             </div>
         </div>
         <div class="m-5 col-span-2">
+            @if (Auth::user()->rol=="user")
             <div class="bg-primary rounded-lg w-full px-3 py-2">
                 <p class="text-white text-xl"><i class="fa-solid fa-bookmark text-2xl"></i> Mis Empleos Aplicados</p>
                 <div class="mt-2">
@@ -81,6 +82,9 @@
                     </div>
                 </div>
             </div>
+            
+                
+            
             <div class="bg-primary rounded-lg w-full px-3 py-2 mt-5">
                 <p class="text-white text-xl"><i class="fa-solid fa-file-lines text-2xl"></i> Mis Curriculums</p>
                 <div class="mt-2">
@@ -109,6 +113,7 @@
                     @endif
                 </div>
             </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
