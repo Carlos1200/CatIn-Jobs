@@ -53,3 +53,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/cv/download',[EditorCont
 Route::middleware(['auth:sanctum', 'verified'])->post('/cv/delete',[EditorController::class,'deleteFile'])->name('cv.delete');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/profile/save', [JobsOffering::class, 'saveJob'])->name('profile.save');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/profile/unsave', [JobsOffering::class, 'unsaveJob'])->name('profile.save.unsave');

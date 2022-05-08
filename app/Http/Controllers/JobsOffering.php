@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hiring_Publication;
+use App\Models\SaveJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +45,34 @@ class JobsOffering extends Controller
         ->join('users','users.id','=','hiring_publication.id_user')
         ->join('company_information','user_id','=','users.id')
         ->get();
+        
+        $save_jobs=SaveJob::select('hiring_publication.title','hiring_publication.id')
+        ->join('hiring_publication','hiring_publication.id','=','save_jobs.id_job')
+        ->where('save_jobs.id_user',Auth::user()->id)
+        ->get();
 
-        return view('dashboard',compact('jobs'));
+        return view('dashboard',compact('jobs','save_jobs'));
+    }
+
+    public function saveJob(Request $request){
+        $id=Auth::user()->id;
+        //validate if the job is already saved
+        $job_exist=SaveJob::where('id_user',$id)->where('id_job',$request->job_id)->first();
+        if($job_exist){
+            return redirect()->back();
+        }
+        $job=new SaveJob();
+        $job->id_user=$id;
+        $job->id_job=$request->job_id;
+        $job->save();
+        return redirect()->back();
+    }
+
+    public function unsaveJob(Request $request){
+        $id=Auth::user()->id;
+        $job=SaveJob::where('id_user',$id)->where('id_job',$request->job_id)->first();
+        var_dump($job);
+        $job->delete();
+        return redirect()->back();
     }
 }

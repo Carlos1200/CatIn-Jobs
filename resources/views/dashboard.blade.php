@@ -12,19 +12,21 @@
                     </div>
                     <!-- Empleos Guardaos -->
                     <ul class="flex flex-col text-justify text-md">
-                        <li>- Desarrollador Web con PHP</li>
-                        <li>- Desarrollador Backend con SQL Server</li>
-                        <li>- Analista de Datos con Power BI</li>
-                        <li>- Desarrollador Full Stack con C# y SQL Server</li>
-                        <li>- Auditor de Sistemas con certificado en Office</li>
-                        <li>- Pasantías como Administrador de Redes y mantenimiento de Data Center</li>
-                        <li>- Desarrollador Angular Temporal por Proyecto </li>
+                        @foreach ($save_jobs as $save_job)
+                            <li class="flex gap-x-2">
+                                <form action="" method="POST" class="grow">
+                                    @csrf
+                                    <input type="hidden" name="job_id" value="{{$save_job->id}}">
+                                    <button type="submit">- {{$save_job->title}}</button>                                    
+                                </form>
+                                <form action="{{route('profile.save.unsave')}}" method="POST" class="shrink">
+                                    @csrf
+                                    <input type="hidden" name="job_id" value="{{$save_job->id}}">
+                                    <button type="submit" class="text-red-500">Eliminar</button>
+                                </form>
+                            </li>
+                        @endforeach
                     </ul>
-                    <!--Mostrar Mas -->
-                    <div class="flex flex-col justify-center items-center cursor-pointer mt-4">
-                        <p class="text-xl text-white">Mostrar Más</p>
-                        <i class="fa-solid fa-sort-down text-3xl text-white"></i>
-                    </div>
                 </div>
                 @endif
                 <!-- Boton Publicar Nuevo Empleo -->
@@ -37,7 +39,7 @@
             </div>
 
             <!-- Oportunidades de Empleo a tu Alcance -->
-            <div class="w-full bg-primary rounded-lg mr-3">
+            <div class="md:w-3/5 w-full bg-primary rounded-lg mr-3 ">
                 <div class="text-center text-white text-3xl mx-5">
                     <p>Oportunidades de Empleo</p>
                 </div>
@@ -45,23 +47,29 @@
                     
                 @foreach ($jobs as $job)
                     <hr class="mx-5">
-                    <div class="m-5 flex flex-col text-white text-basic items-center">
+                    <div class="m-5  flex flex-col text-white text-basic ">
                         <!-- Contenedor de Empleos -->
                         <div class="flex flex-row mx-5">
-                            <!-- Cuadrado -->
-                            <div class="mx-5">
-                                <i class="fa-solid fa-square"></i>
-                            </div>
                             <!-- Informacion -->
-                            <div class="mx-5 w-52">
-                                <p>{{$job->title}}</p>
-                                <p>{{$job->company_name}}</p>
-                                <p>{{$job->location}} ({{$job->hiring_type}})</p>
+                            <div class="mx-5 flex grow">
+                                @if (Auth::user()->rol=="user")
+                                <form action="{{route('profile.save')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="job_id" value="{{$job->id}}">
+                                    <button type="submit" class="flex flex-row items-center bg-alt-secondary border-2 rounded-lg p-4">
+                                        <i class="fa-solid fa-bookmark text-3xl"></i>
+                                    </button>
+                                </form>
+                                @endif
+                                <div class="mx-4">
+                                    <p class="text-3xl font-bold">{{$job->title}}</p>
+                                    <p>{{$job->company_name}}</p>
+                                    <p>{{$job->location}} ({{$job->hiring_type}})</p>
+                                </div>
                             </div>
                             <!-- Icono de Guardado y Fecha -->
-                            <div class="mx-5 w-48 text-right">
-                                <i class="fa-light fa-bookmark text-3xl"></i>
-                                <p class="p-2">Hace 6 dias</p>
+                            <div class="mx-5 text-right shrink flex items-end">
+                                <p class="p-2">{{$job->created_at->diffForHumans()}}</p>
                             </div>
                         </div>
                     </div>
