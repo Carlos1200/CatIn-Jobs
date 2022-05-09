@@ -6,12 +6,12 @@ use App\Models\Company_Information;
 use App\Models\Curriculum;
 use App\Models\Formation;
 use App\Models\Gender;
+use App\Models\Hiring_Publication;
 use App\Models\Idioms;
 use App\Models\Knowledges;
 use App\Models\Laboral_Experience;
 use App\Models\Personal_Information;
 use App\Models\Reference;
-use App\Models\SaveJob;
 use App\Models\Soft_Skill;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +28,8 @@ class ProfileController extends Controller
         $user_role= Auth::user()->rol;
         if($user_role=='company'){
             $user=User::select('company_name','work_area','location','information','number_employees')->join('company_information','company_information.user_id','=','users.id')->where('users.id',$user_id)->get();
-            return view('profile',compact('user'));
+            $publications=Hiring_Publication::select('id','title')->where('id_user',$user_id)->limit(4)->get();
+            return view('profile',compact('user','publications'));
         }else{
             $user= User::select('users.name','personal_information.nationality','personal_information.about_me')->join('personal_information','personal_information.id','=','users.id_information')->where('users.id',$user_id)->get();
             $curriculums=Curriculum::where('id_user',$user_id)->limit(4)->get();

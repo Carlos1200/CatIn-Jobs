@@ -83,6 +83,7 @@
                 </div>
             </div>
             
+            
                 
             
             <div class="bg-primary rounded-lg w-full px-3 py-2 mt-5">
@@ -110,6 +111,27 @@
                     @endif
                     @else
                         <p class="text-white text-xl text-center">No hay curriculums disponibles</p>
+                    @endif
+                </div>
+            </div>
+            @endif
+            @if (Auth::user()->rol=="company")
+            <div class="bg-primary rounded-lg w-full px-3 py-2">
+                <p class="text-white text-xl"><i class="fa-solid fa-bookmark text-2xl"></i> Mis publicaciones</p>
+                <div class="mt-2">
+                    <ul>
+                        @foreach ($publications as $publication )
+                        <li class="text-white cursor-pointer">
+                            <a class="grow" href="{{route('jobs.showDetails',['id'=>$publication->id])}}">- {{$publication->title}}</a>
+                        </li>
+                        @endforeach
+                        
+                    </ul>
+                    @if ($publications->count()>=4)
+                        <div class="flex flex-col justify-center items-center cursor-pointer mt-3">
+                            <p class="text-xl text-white">Mostrar Más</p>
+                            <i class="fa-solid fa-sort-down text-3xl text-white"></i>
+                        </div>
                     @endif
                 </div>
             </div>

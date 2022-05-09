@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class JobsOffering extends Controller
 {
-    //
     public function show()
     {
         return view('publish');
@@ -76,7 +75,7 @@ class JobsOffering extends Controller
         return redirect()->back();
     }
 
-    public function showDetails($id){
+    public function showDetails($id,Request $request){
         $job=Hiring_Publication::select('company_information.company_name','company_information.work_area',
         'company_information.location','hiring_publication.title','hiring_publication.hiring_type','hiring_publication.description',
         'hiring_publication.salary','hiring_publication.id')
@@ -84,6 +83,13 @@ class JobsOffering extends Controller
         ->join('company_information','user_id','=','users.id')
         ->where('hiring_publication.id',$id)
         ->get()[0];
-        return view('jobinfo',compact('job'));
+
+        $isOpen=$_GET['isOpen']??false;
+
+        return view('jobinfo',compact('job','isOpen'));
+    }
+
+    public function showPublication(){
+        
     }
 }

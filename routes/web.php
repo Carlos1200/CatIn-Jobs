@@ -5,6 +5,8 @@ use App\Http\Controllers\JobsOffering;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
+use App\Http\Livewire\Create;
+use App\Http\Livewire\Jobinfo;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,3 +61,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/profile/edit', [ProfileCo
 Route::middleware(['auth:sanctum', 'verified'])->post('/profile/save', [JobsOffering::class, 'saveJob'])->name('profile.save');
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/profile/unsave', [JobsOffering::class, 'unsaveJob'])->name('profile.save.unsave');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/jobinfo/upload', [Create::class, 'upload'])->name('jobinfo.upload');

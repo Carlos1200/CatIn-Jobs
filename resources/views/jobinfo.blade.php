@@ -21,15 +21,21 @@
                         {{$job->description}}
                     </p>
                 </div>
+                @if($isOpen)
+                    @include('livewire.create')
+                @endif
                 <!-- Botones -->
                 <div class='flex justify-center mt-4 text-lg'>
-                    <input type='submit' class='bg-alt-secondary p-4 m-4 font-bold rounded-lg text-white hover:bg-transparent hover:text-alt-secondary hover:border-2 hover:border-alt-secondary transition-colors ease-in-out' value='Aplicar' />
+                    <form action="{{route('jobs.showDetails',['id'=>$job->id])}}" method="GET">
+                        <input type="hidden" name="isOpen" value="true">
+                        <input type='submit' class='bg-alt-secondary p-4 m-4 font-bold rounded-lg text-white hover:bg-transparent hover:text-alt-secondary hover:border-2 hover:border-alt-secondary transition-colors ease-in-out' value='Aplicar' />
+                    </form>
                     <form action="{{route('profile.save')}}" method="POST">
                         @csrf
-                        <input type="hidden" name="job_id" value="{{$job->id}}">
                         <input type='submit' class='text-alt-secondary transition-colors ease-in-out p-4 m-4 font-bold rounded-lg border-2 cursor-pointer border-alt-secondary hover:bg-alt-secondary hover:text-white hover:border-white' value='Guardar' />
                     </form>
                 </div>
             </div>
         </div>
+    </div>
 </x-app-layout>
