@@ -5,6 +5,8 @@ use App\Http\Controllers\JobsOffering;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProviderController;
+use App\Http\Livewire\Create;
+use App\Http\Livewire\Jobinfo;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/publish/show', [JobsOffer
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/publish/store', [JobsOffering::class, 'store'])->name('jobs.store');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/jobinfo/showDetails', [JobsOffering::class, 'showDetails'])->name('jobs.showDetails');
+Route::middleware(['auth:sanctum', 'verified'])->get('/jobinfo/showDetails/{id}', [JobsOffering::class, 'showDetails'])->name('jobs.showDetails');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/cv/api/info', [EditorController::class, 'getInfo'])->name('cv.api.info');
 
@@ -55,3 +57,9 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/cv/download', [EditorCon
 Route::middleware(['auth:sanctum', 'verified'])->post('/cv/delete', [EditorController::class, 'deleteFile'])->name('cv.delete');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/profile/save', [JobsOffering::class, 'saveJob'])->name('profile.save');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/profile/unsave', [JobsOffering::class, 'unsaveJob'])->name('profile.save.unsave');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/jobinfo/upload', [Create::class, 'upload'])->name('jobinfo.upload');
