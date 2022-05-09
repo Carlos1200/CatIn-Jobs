@@ -37,5 +37,40 @@
                 </div>
             </div>
         </div>
+        @if (Auth::user()->id == $job->user_id)
+            <div class="mt-5">
+                <h3 class="text-white text-2xl text-center">CVs de aplicantes</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    @foreach ($cvs as $cv)
+                    <div>
+                        <div class="flex flex-col items-center">
+                            <form class="flex flex-col items-center" method="POST" action="{{route("cv.download")}}">
+                                @csrf
+                                <i class="fa-solid fa-file-pdf text-7xl text-white mb-2"></i>
+                                <p class="text-center text-xl text-white">{{$cv->cv_tittle}}</p>
+            
+                                <input type="hidden" name="cv_path" value="{{$cv->path}}">
+                                <input type="hidden" name="cv_tittle" value="{{$cv->cv_tittle}}">
+            
+                                <button type="submit" class="bg-primary hover:bg-slate-800 text-white p-2 rounded-lg">Descargar</button>
+                            </form>
+                        </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <h3 class="text-red-600 text-2xl text-center">Eliminar Publicacion</h3>
+                <p class="text-white text-center">No se puede revertir los cambios una vez realizados</p>
+                <form action="{{route('jobs.destroy',['id'=>$job->id])}}" method="POST" class="flex justify-center">
+                    @csrf
+                    <input type='submit' class='bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg' value='Eliminar' />
+                </form>
+            </div>
+        @endif
+        <div>
+
+        </div>
     </div>
 </x-app-layout>

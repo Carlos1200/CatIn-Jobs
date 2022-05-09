@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hiring_Publication;
+use App\Models\HiringCV;
 use App\Models\SaveJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -78,18 +79,32 @@ class JobsOffering extends Controller
     public function showDetails($id,Request $request){
         $job=Hiring_Publication::select('company_information.company_name','company_information.work_area',
         'company_information.location','hiring_publication.title','hiring_publication.hiring_type','hiring_publication.description',
-        'hiring_publication.salary','hiring_publication.id')
+        'hiring_publication.salary','hiring_publication.id','users.id as user_id')
         ->join('users','users.id','=','hiring_publication.id_user')
         ->join('company_information','user_id','=','users.id')
         ->where('hiring_publication.id',$id)
         ->get()[0];
 
+        $cvs=HiringCV::select('id','cv_tittle','path','created_at')->where('id_hiring',$id)->get();
+
         $isOpen=$_GET['isOpen']??false;
 
-        return view('jobinfo',compact('job','isOpen'));
+        return view('jobinfo',compact('job','isOpen','cvs'));
     }
 
     public function showPublication(){
-        
+        $jobs=Hiring_Publication::all();
+        return view('publication',compact('jobs'));
+    }
+
+    public function destroy($id)
+    {
+        $job=Hiring_Publication::find($id);
+        $cvs=HiringCV::where('id_hiring',$id)->get();
+        foreach($cvs as $cv){
+            $cv->delete();
+        }
+        $job->delete();
+        return redirect()->route('home');
     }
 }

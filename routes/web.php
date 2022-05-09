@@ -63,3 +63,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/profile/save', [JobsOffe
 Route::middleware(['auth:sanctum', 'verified'])->post('/profile/unsave', [JobsOffering::class, 'unsaveJob'])->name('profile.save.unsave');
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/jobinfo/upload', [Create::class, 'upload'])->name('jobinfo.upload');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/jobs/show', [JobsOffering::class, 'showPublication'])->name('jobs.showPublication');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/jobs/destroy/{id}', [JobsOffering::class, 'destroy'])->name('jobs.destroy');

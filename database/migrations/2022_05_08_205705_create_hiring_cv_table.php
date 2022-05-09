@@ -16,7 +16,7 @@ class CreateHiringCvTable extends Migration
         Schema::create('hiring_cv', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_hiring');
-            $table->foreign('id_hiring')->references('id')->on('hiring_publication');
+            $table->foreign('id_hiring')->references('id')->on('hiring_publication')->onDelete('cascade');
             $table->string('cv_tittle');
             $table->text('path');
             $table->timestamps();

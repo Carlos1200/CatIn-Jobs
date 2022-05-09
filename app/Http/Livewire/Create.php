@@ -22,7 +22,7 @@ class Create extends Component
         $unique_name=uniqid();
         $file=$request->file('cv');
         $file->storeAs('public/hire_cv',$unique_name.'.pdf');
-        $path='cv/'.$unique_name.'.pdf';
+        $path='hire_cv/'.$unique_name.'.pdf';
 
         $cv=new HiringCV();
         $cv->id_hiring=$id;

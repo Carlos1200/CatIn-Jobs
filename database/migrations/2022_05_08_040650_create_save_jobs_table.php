@@ -18,8 +18,8 @@ class CreateSaveJobsTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_job');
 
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_job')->references('id')->on('hiring_publication');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');;
+            $table->foreign('id_job')->references('id')->on('hiring_publication')->onDelete('cascade');;
 
             $table->timestamps();
         });
