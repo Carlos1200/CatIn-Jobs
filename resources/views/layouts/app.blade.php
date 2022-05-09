@@ -18,7 +18,9 @@
 
         <!-- Scripts -->
         <script src="https://kit.fontawesome.com/c1e670248c.js" crossorigin="anonymous"></script>
+
         {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+        <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -43,9 +45,5 @@
 
         @stack('modals')
 
-        @livewireScripts
-        <script src="{{ asset('js/manifest.js') }}"></script>
-        <script src="{{ asset('js/vendor.js') }}"></script>
-        <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

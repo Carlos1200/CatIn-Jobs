@@ -58,52 +58,51 @@
             </div>
         </div>
         <div class="m-5 col-span-2">
-            <div class="bg-primary rounded-lg w-full px-3 py-2">
-                <p class="text-white text-xl"><i class="fa-solid fa-bookmark text-2xl"></i> Mis Empleos Aplicados</p>
-                <div class="mt-2">
-                    <ul>
-                        <li class="text-white cursor-pointer">
-                            <p> -Desarrollo web con PHP</p>
-                        </li>
-                        <li class="text-white cursor-pointer">
-                            <p> -Backend Developer with MVC</p>
-                        </li>
-                        <li class="text-white cursor-pointer">
-                            <p> -Frontend Developer with React</p>
-                        </li>
-                        <li class="text-white cursor-pointer">
-                            <p> -.Net Project Manager</p>
-                        </li>
-                    </ul>
-                    <div class="flex flex-col justify-center items-center cursor-pointer mt-3">
-                        <p class="text-xl text-white">Mostrar Más</p>
-                        <i class="fa-solid fa-sort-down text-3xl text-white"></i>
-                    </div>
-                </div>
-            </div>
+            @if (Auth::user()->rol=="user")
             <div class="bg-primary rounded-lg w-full px-3 py-2 mt-5">
                 <p class="text-white text-xl"><i class="fa-solid fa-file-lines text-2xl"></i> Mis Curriculums</p>
                 <div class="mt-2">
+                    @if ($curriculums->count()>0)
                     <ul>
+                        @foreach ($curriculums as $curriculum)
                         <li class="text-white cursor-pointer">
-                            <p> -Para Desarrollo web</p>
+                            <form  method="POST" action="{{route("cv.download")}}">
+                                @csrf
+                                <input type="hidden" name="cv_path" value="{{$curriculum->cv_template}}">
+                                <input type="hidden" name="cv_tittle" value="{{$curriculum->cv_tittle}}">
+                                <button type="submit"> -{{$curriculum->cv_tittle}}</button>
+                            </form>
                         </li>
-                        <li class="text-white cursor-pointer">
-                            <p> -Para Backend Developer</p>
-                        </li>
-                        <li class="text-white cursor-pointer">
-                            <p> -Para Frontend Developer</p>
-                        </li>
-                        <li class="text-white cursor-pointer">
-                            <p> -Para SCRUM Master</p>
-                        </li>
+                        @endforeach
+                        
                     </ul>
-                    <div class="flex flex-col justify-center items-center cursor-pointer mt-3">
+                    @if ($curriculums->count()>=4)
+                    <a href="{{route('cv.show')}}" class="flex flex-col justify-center items-center cursor-pointer mt-3">
                         <p class="text-xl text-white">Mostrar Más</p>
                         <i class="fa-solid fa-sort-down text-3xl text-white"></i>
-                    </div>
+                    </a>
+                    @endif
+                    @else
+                        <p class="text-white text-xl text-center">No hay curriculums disponibles</p>
+                    @endif
                 </div>
             </div>
+            @endif
+            @if (Auth::user()->rol=="company")
+            <div class="bg-primary rounded-lg w-full px-3 py-2">
+                <p class="text-white text-xl"><i class="fa-solid fa-bookmark text-2xl"></i> Mis publicaciones</p>
+                <div class="mt-2">
+                    <ul>
+                        @foreach ($publications as $publication )
+                        <li class="text-white cursor-pointer">
+                            <a class="grow" href="{{route('jobs.showDetails',['id'=>$publication->id])}}">- {{$publication->title}}</a>  
+                        </li>
+                        @endforeach
+                        
+                    </ul>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </x-app-layout>
