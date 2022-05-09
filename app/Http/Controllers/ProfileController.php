@@ -62,7 +62,6 @@ class ProfileController extends Controller
     }
     
     public function providerRegister(){
-        
         $role=$_POST['role'];
         if($role=='user'){
 
@@ -188,7 +187,6 @@ class ProfileController extends Controller
         
         return view('profile-edit',compact('info','generos'));
     }
-
     public function update(Request $request){
         $id=Auth::user()->id;
         $user= User::where('id', $id)->first();

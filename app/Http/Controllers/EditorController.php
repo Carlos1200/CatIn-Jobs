@@ -57,5 +57,4 @@ class EditorController extends Controller
         Storage::delete($path);
         return redirect()->route('cv.show');
     }
-        
 }

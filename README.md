@@ -24,8 +24,3 @@ finalidades económicas, es decir, esta es una Licencia de Cultura Libre.
 
 ![Licencia Creative Commons](https://user-images.githubusercontent.com/50189393/132115949-1147cee0-ea81-47a5-94e5-d87fb808a802.png)
 
-
-
-
-
-
